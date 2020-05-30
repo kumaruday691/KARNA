@@ -1,4 +1,8 @@
+import math
+import datetime
+
 from peripherals.hue.BridgeDecorator import BridgeDecorator
+from peripherals.humidity.HumiditySensor import HumiditySensor
 from peripherals.lcd import lcddriver
 
 
@@ -39,7 +43,14 @@ class PeripheralFactory(object):
         lcd = lcddriver.lcd()
         lcd.lcd_clear()
         self._lcd = lcd
+        self._lcd.lcd_display_string("Initializing....", 1)
 
     def _initializeHueBridge(self):
         bridgeDecorator = BridgeDecorator(self.HUE_ADDRESS)
         self._bridge = bridgeDecorator.initialize()
+        if self._bridge:
+            self._lcd.lcd_display_string("Hue Bridge Connected", 2)
+            self._bridge.flicker()
+        else:
+            self._lcd.lcd_display_string("Hue Bridge Unavailable", 2)
+
