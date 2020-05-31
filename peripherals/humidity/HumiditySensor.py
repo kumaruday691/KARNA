@@ -1,6 +1,6 @@
 import Adafruit_DHT
 
-from logging.ApplicationLogger import ApplicationLogger
+from appLogging.ApplicationLogger import ApplicationLogger
 
 
 class HumiditySensor(object):

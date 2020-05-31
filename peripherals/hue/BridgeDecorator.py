@@ -1,7 +1,7 @@
 from phue import Bridge
 from time import sleep
 
-from logging.ApplicationLogger import ApplicationLogger
+from appLogging.ApplicationLogger import ApplicationLogger
 
 
 class BridgeDecorator(object):
