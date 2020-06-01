@@ -35,7 +35,6 @@ class BridgeDecorator(object):
         sleep(1)
         self._toggleLights(None)
 
-
     # region Helper Methods
 
     def _toggleLights(self, toggleState):
@@ -43,12 +42,11 @@ class BridgeDecorator(object):
         if not lights:
             return
 
-        for light in lights:
+        for i in range(len(lights)):
             if toggleState is None:
-                light.on = not light.on
-                self.status = light.on
-                return
+                self._component.lights[i].on = not self._component.lights[i].on
+                continue
 
-            light.on = toggleState
-            self.status = light.on
+            self._component.lights[i].on = toggleState
+            self.status = self._component.lights[i].on
 
