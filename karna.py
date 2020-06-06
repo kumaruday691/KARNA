@@ -18,5 +18,8 @@ def _runEvents():
 
 
 if __name__ == "__main__":
-    initialize()
-    run()
+    try:
+        initialize()
+        run()
+    except Exception as ex:
+        print("Exception caught")

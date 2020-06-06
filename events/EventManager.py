@@ -1,3 +1,4 @@
+from events.ProximityEvent import ProximityEvent
 from events.TimeEvent import TimeEvent
 
 
@@ -12,6 +13,7 @@ class EventManager(object):
 
     def initialize(self):
         self.events.append(TimeEvent())
+        self.events.append(ProximityEvent())
 
     def run(self):
         for event in self.events:

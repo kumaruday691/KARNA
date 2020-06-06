@@ -25,5 +25,5 @@ class DisplayAmbianceAction(AbstractAction):
         humidity, temperature = HumiditySensor().readVitals()
         if humidity is not None and temperature is not None:
             atmDisplay = "Hum:{0}% Tmp:{1}*C".format(math.floor(humidity), math.floor(temperature))
-            self.lcd.lcd_display_string(now.strftime("%a %d %I:%M:%S"), 1)
+            self.lcd.lcd_display_string(now.strftime("%a %d %I:%M %p"), 1)
             self.lcd.lcd_display_string(atmDisplay, 2)

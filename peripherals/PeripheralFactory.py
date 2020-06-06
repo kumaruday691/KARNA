@@ -3,6 +3,7 @@ import datetime
 
 from peripherals.hue.BridgeDecorator import BridgeDecorator
 from peripherals.humidity.HumiditySensor import HumiditySensor
+from peripherals.io.IoInitializer import IoInitializer
 from peripherals.lcd import lcddriver
 
 
@@ -30,6 +31,7 @@ class PeripheralFactory(object):
     def initialize(self):
         self._initializeLcd()
         self._initializeHueBridge()
+        self._initializeIo()
 
     def getLcdDevice(self):
         return self._lcd
@@ -39,11 +41,14 @@ class PeripheralFactory(object):
 
     # region Helper Methods
 
+    def _initializeIo(self):
+        IoInitializer().initialize()
+
     def _initializeLcd(self):
         lcd = lcddriver.lcd()
         lcd.lcd_clear()
         self._lcd = lcd
-        self._lcd.lcd_display_string("Initializing....", 1)
+        self._lcd.lcd_display_string("Initializing...", 1)
 
     def _initializeHueBridge(self):
         bridgeDecorator = BridgeDecorator(self.HUE_ADDRESS)
