@@ -21,7 +21,7 @@ class BridgeDecorator(object):
             self._component.connect()
             return self
         except Exception as ex:
-            ApplicationLogger().addError("Failed to initialize Hue bridge")
+            ApplicationLogger().addError("Failed to initialize Hue bridge.")
             return None
 
     def turnOnAll(self):
@@ -31,9 +31,12 @@ class BridgeDecorator(object):
         self._toggleLights(False)
 
     def flicker(self):
-        self._toggleLights(None)
-        sleep(1)
-        self._toggleLights(None)
+        try:
+            self._toggleLights(None)
+            sleep(1)
+            self._toggleLights(None)
+        except Exception as ex:
+            ApplicationLogger().addError("Failed to control hue lights. Please check connectivity.")
 
     # region Helper Methods
 

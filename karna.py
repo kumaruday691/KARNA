@@ -1,9 +1,12 @@
+from appLogging.ApplicationLogger import ApplicationLogger
 from events.EventManager import EventManager
 from peripherals.PeripheralFactory import PeripheralFactory
+from peripherals.speaker.SpeechAdapter import SpeechAdapter
 
 
 def initialize():
     PeripheralFactory().initialize()
+    SpeechAdapter.checkForErrors("All sensors are functional.")
 
 
 def run():
@@ -22,4 +25,5 @@ if __name__ == "__main__":
         initialize()
         run()
     except Exception as ex:
+        print(ApplicationLogger().getErrors())
         print("Exception caught")
