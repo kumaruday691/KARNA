@@ -1,10 +1,8 @@
-import math
-import datetime
-
+from common.constants import START_UP_START
 from peripherals.hue.BridgeDecorator import BridgeDecorator
-from peripherals.humidity.HumiditySensor import HumiditySensor
 from peripherals.io.IoInitializer import IoInitializer
 from peripherals.lcd import lcddriver
+from peripherals.speaker.SpeechAdapter import SpeechAdapter
 
 
 class PeripheralFactory(object):
@@ -29,6 +27,7 @@ class PeripheralFactory(object):
     # region Public Methods
 
     def initialize(self):
+        self._initializeSpeech()
         self._initializeLcd()
         self._initializeHueBridge()
         self._initializeIo()
@@ -40,6 +39,9 @@ class PeripheralFactory(object):
         return self._bridge
 
     # region Helper Methods
+
+    def _initializeSpeech(self):
+        SpeechAdapter.playNow(START_UP_START)
 
     def _initializeIo(self):
         IoInitializer().initialize()

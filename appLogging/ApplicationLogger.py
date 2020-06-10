@@ -20,3 +20,9 @@ class ApplicationLogger(object):
 
     def addWarning(self, warning):
         self._warnings.append(warning)
+
+    def getErrors(self):
+        return self._errors
+
+    def clearErrors(self):
+        self._errors = []
