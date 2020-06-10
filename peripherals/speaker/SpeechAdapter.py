@@ -1,5 +1,6 @@
 from gtts import gTTS
 import os
+import playsound
 
 from appLogging.ApplicationLogger import ApplicationLogger
 from common.constants import DEF_LANG, DEF_AUDIO_PATH
@@ -39,8 +40,7 @@ class SpeechAdapter(object):
     @staticmethod
     def play():
         try:
-            os.system("omxplayer {0} > /dev/null".format(DEF_AUDIO_PATH))
-            os.remove(DEF_AUDIO_PATH)
+            os.system("omxplayer --no-osd {0} > /dev/null &".format(DEF_AUDIO_PATH))
         except Exception as ex:
             ApplicationLogger().addError("Unable to remove audio file")
 
