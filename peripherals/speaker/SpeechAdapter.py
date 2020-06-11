@@ -40,7 +40,7 @@ class SpeechAdapter(object):
     @staticmethod
     def play():
         try:
-            os.system("omxplayer --no-osd {0} > /dev/null &".format(DEF_AUDIO_PATH))
+            os.system("omxplayer {0} > /dev/null &".format('supr.mp3'))
         except Exception as ex:
             ApplicationLogger().addError("Unable to remove audio file")
 

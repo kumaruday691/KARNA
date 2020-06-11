@@ -21,6 +21,9 @@ class SchedulerManager(object):
     # region Public Methods
 
     def addEvent(self, scheduler, action):
+        if len(action) < 3:
+            return
+
         actionName = action[0]
         actionTime = action[1]
         actionEvent = action[2]

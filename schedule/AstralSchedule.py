@@ -26,6 +26,7 @@ class AstralSchedule(AbstractSchedule):
 
     def sunriseAction(self):
         print("sunrise")
+        SpeechAdapter().playNow('Its morning.')
         SchedulerManager().removeEvent('sunrise')
         pass
 
@@ -36,6 +37,7 @@ class AstralSchedule(AbstractSchedule):
 
     def moonriseAction(self):
         print("moonrise")
+        #SpeechAdapter().playNow('Moon is out !')
         SchedulerManager().removeEvent('moonrise')
         pass
 

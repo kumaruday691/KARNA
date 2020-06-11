@@ -18,24 +18,23 @@ class EventScheduler(object):
     # region Public Methods
 
     def initialize(self):
+        self._initializeSchedules()
         currentTimeExtended = datetime.datetime.now().timestamp() + 5
-        self.schedules.append(AstralSchedule())
         self._mainEvent = self._component.enterabs(currentTimeExtended, 1, self.scheduleEvents)
-        self._component.run()
-        pass
+        self._component.run(blocking=False)
 
     def scheduleEvents(self):
-        print("executed")
         for schedule in self.schedules:
             schedule.schedule()
             actions = schedule.getCallbacks()
             for action in actions:
                 SchedulerManager().addEvent(self._component, action)
 
-        currentTimeExtended = datetime.datetime.now().timestamp() + 60
+        currentTimeExtended = datetime.datetime.now().timestamp() + (24 * 60 * 60)
         self._mainEvent = self._component.enterabs(currentTimeExtended, 1, self.scheduleEvents)
         pass
 
-    def runAction(self):
-        print("Run action")
-        pass
+    # region Helper Methods
+
+    def _initializeSchedules(self):
+        self.schedules.append(AstralSchedule())
