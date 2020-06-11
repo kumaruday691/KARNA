@@ -21,7 +21,7 @@ class EventScheduler(object):
         self._initializeSchedules()
         currentTimeExtended = datetime.datetime.now().timestamp() + 5
         self._mainEvent = self._component.enterabs(currentTimeExtended, 1, self.scheduleEvents)
-        self._component.run(blocking=False)
+        self._component.run()
 
     def scheduleEvents(self):
         for schedule in self.schedules:

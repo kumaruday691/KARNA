@@ -1,3 +1,4 @@
+import threading
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 
@@ -27,11 +28,11 @@ def sms_reply():
 def initialize():
     PeripheralFactory().initialize()
     SpeechAdapter.checkForErrors("All sensors are functional.")
-    EventScheduler().initialize()
+    threading.Thread(target=EventScheduler().initialize).start()
 
 
 def run():
-    app.run()
+    threading.Thread(target=app.run).start()
     while True:
         _runEvents()
 
