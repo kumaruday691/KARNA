@@ -1,8 +1,6 @@
 from common.AstralDecorator import AstralDecorator
 from peripherals.speaker.SpeechAdapter import SpeechAdapter
 from schedule.AbstractSchedule import AbstractSchedule
-from datetime import datetime
-import playsound
 
 from schedule.SchedulerManager import SchedulerManager
 

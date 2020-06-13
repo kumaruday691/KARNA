@@ -1,6 +1,7 @@
 import sched, time, datetime
 
 from schedule.AstralSchedule import AstralSchedule
+from schedule.LocationSchedule import LocationSchedule
 from schedule.SchedulerManager import SchedulerManager
 
 
@@ -30,7 +31,7 @@ class EventScheduler(object):
             for action in actions:
                 SchedulerManager().addEvent(self._component, action)
 
-        currentTimeExtended = datetime.datetime.now().timestamp() + (24 * 60 * 60)
+        currentTimeExtended = datetime.datetime.now().timestamp() + (15 * 60)
         self._mainEvent = self._component.enterabs(currentTimeExtended, 1, self.scheduleEvents)
         pass
 
@@ -38,3 +39,4 @@ class EventScheduler(object):
 
     def _initializeSchedules(self):
         self.schedules.append(AstralSchedule())
+        self.schedules.append(LocationSchedule())

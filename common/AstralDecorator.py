@@ -1,13 +1,11 @@
 import ephem
 import datetime
+import os
+
+from appLogging.ApplicationLogger import ApplicationLogger
 
 
 class AstralDecorator(object):
-
-    # region Constants
-
-    LOC_LAT = "31.4638"
-    LOC_LONG = "-100.4370"
 
     # region Constructor
 
@@ -17,12 +15,18 @@ class AstralDecorator(object):
     # region Public Methods
 
     def getNextSunriseAndSunset(self):
+        if self._location is None:
+            return None, None
+
         sun = ephem.Sun()
         riseTimeEphem = self._location.next_rising(sun)
         setTimeEphem = self._location.next_setting(sun)
         return self._convertEphemTimeToLocalTime(riseTimeEphem), self._convertEphemTimeToLocalTime(setTimeEphem)
 
     def getNextMoonrise(self):
+        if self._location is None:
+            return None
+
         moon = ephem.Moon()
         riseTimeEphem = self._location.next_rising(moon)
         return self._convertEphemTimeToLocalTime(riseTimeEphem)
@@ -45,10 +49,14 @@ class AstralDecorator(object):
     # region Helper Methods
 
     def _initializeLocation(self):
-        location = ephem.Observer()
-        location.lat = self.LOC_LAT
-        location.lon = self.LOC_LONG
-        return location
+        try:
+            location = ephem.Observer()
+            location.lat = os.environ['homeLat']
+            location.lon = os.environ['homeLng']
+            return location
+        except Exception as ex:
+            ApplicationLogger().addError("failed to fetch astral location")
+            return None
 
     def _convertEphemTimeToLocalTime(self, ephemTime):
         ephemTimeTuple = ephemTime.tuple()
