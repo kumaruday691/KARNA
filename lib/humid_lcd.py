@@ -1,9 +1,10 @@
 import Adafruit_DHT
-import lcddriver
 import datetime
 import math
 from phue import Bridge
 from time import *
+
+from peripherals.lcd import lcddriver
 
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 4

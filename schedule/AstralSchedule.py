@@ -43,8 +43,10 @@ class AstralSchedule(AbstractSchedule):
 
     def _scheduleSunriseAndSunset(self):
         sunriseTime, sunsetTime = self._astral.getNextSunriseAndSunset()
-        self.addCallback("sunrise", sunriseTime.timestamp(), self.sunriseAction)
-        self.addCallback("sunset", sunsetTime.timestamp() - 30 * 60, self.sunsetAction)
+        if sunriseTime is not None:
+            self.addCallback("sunrise", sunriseTime.timestamp(), self.sunriseAction)
+        if sunsetTime is not None:
+            self.addCallback("sunset", sunsetTime.timestamp() - 30 * 60, self.sunsetAction)
 
     def _scheduleMoonrise(self):
         moonriseTime = self._astral.getNextMoonrise()
