@@ -23,7 +23,6 @@ class AstralSchedule(AbstractSchedule):
     # region Actions
 
     def sunriseAction(self):
-        print("sunrise")
         SpeechAdapter().playNow('Its morning. Sun is here. Time to wake up')
         SchedulerManager().removeEvent('sunrise')
         pass
@@ -34,8 +33,7 @@ class AstralSchedule(AbstractSchedule):
         pass
 
     def moonriseAction(self):
-        print("moonrise")
-        #SpeechAdapter().playNow('Moon is out !')
+        SpeechAdapter().playNow('Moon is out !')
         SchedulerManager().removeEvent('moonrise')
         pass
 
@@ -50,4 +48,5 @@ class AstralSchedule(AbstractSchedule):
 
     def _scheduleMoonrise(self):
         moonriseTime = self._astral.getNextMoonrise()
-        self.addCallback('moonrise', moonriseTime.timestamp(), self.moonriseAction)
+        if moonriseTime is not None:
+            self.addCallback('moonrise', moonriseTime.timestamp(), self.moonriseAction)

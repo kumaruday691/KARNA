@@ -1,8 +1,8 @@
 import ephem
 import datetime
-import os
 
 from appLogging.ApplicationLogger import ApplicationLogger
+from common import Utility
 
 
 class AstralDecorator(object):
@@ -51,8 +51,9 @@ class AstralDecorator(object):
     def _initializeLocation(self):
         try:
             location = ephem.Observer()
-            location.lat = os.environ['homeLat']
-            location.lon = os.environ['homeLng']
+            lat, lng = Utility.getHomeLocation()
+            location.lat = lat
+            location.lon = lng
             return location
         except Exception as ex:
             ApplicationLogger().addError("failed to fetch astral location")

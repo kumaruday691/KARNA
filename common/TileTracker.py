@@ -1,6 +1,7 @@
 import json
-import os
 import dateparser
+
+from common import Utility
 
 
 class TileTracker(object):
@@ -26,8 +27,9 @@ class TileTracker(object):
         lng = phoneId['longitude']
 
         knownDate = dateparser.parse(str(timstamp))
-        homeLat = float(os.environ['homeLat'])
-        homeLng = float(os.environ['homeLng'])
+        hlat, hlng = Utility.getHomeLocation()
+        homeLat = float(hlat)
+        homeLng = float(hlng)
 
         return round(lat, 2) == round(homeLat, 2) and round(lng, 2) == round(homeLng, 2), knownDate
 

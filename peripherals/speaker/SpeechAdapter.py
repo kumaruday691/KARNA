@@ -1,6 +1,5 @@
 from gtts import gTTS
 import os
-import playsound
 
 from appLogging.ApplicationLogger import ApplicationLogger
 from common.constants import DEF_LANG, DEF_AUDIO_PATH
