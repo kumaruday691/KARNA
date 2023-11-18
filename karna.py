@@ -1,6 +1,4 @@
 import threading
-import flask
-from twilio.twiml.messaging_response import MessagingResponse
 
 from appLogging.ApplicationLogger import ApplicationLogger
 from events.EventManager import EventManager
