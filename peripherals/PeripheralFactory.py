@@ -8,7 +8,7 @@ from peripherals.speaker.SpeechAdapter import SpeechAdapter
 class PeripheralFactory(object):
     # region Constants
 
-    HUE_ADDRESS = '192.168.86.28'
+    HUE_ADDRESS = '192.168.1.74'
 
     # region Properties
 

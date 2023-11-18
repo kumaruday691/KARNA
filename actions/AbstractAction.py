@@ -1,7 +1,8 @@
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 
 
 class AbstractAction(ABC):
+
     # region Constructor
 
     def __init__(self):

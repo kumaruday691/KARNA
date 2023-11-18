@@ -6,4 +6,4 @@ DEF_AUDIO_PATH = 'temp_audio.mp3'
 
 # Audio Messages
 
-START_UP_START = 'System initialization in process .'
+START_UP_START = 'Hello Uday, System initialization in process .'

@@ -8,22 +8,6 @@ from peripherals.PeripheralFactory import PeripheralFactory
 from peripherals.speaker.SpeechAdapter import SpeechAdapter
 from schedule.EventScheduler import EventScheduler
 
-app = flask.Flask(__name__)
-
-
-@app.route("/sms", methods=['GET', 'POST'])
-def sms_reply():
-    from_number = flask.request.form['From']
-    to_number = flask.request.form['To']
-    body = flask.request.form['Body']
-
-    print(from_number, to_number, body)
-    resp = MessagingResponse()
-
-    resp.message("The Robots are coming! Head for the hills!")
-
-    return str(resp)
-
 
 def initialize():
     PeripheralFactory().initialize()
@@ -32,7 +16,6 @@ def initialize():
 
 
 def run():
-    threading.Thread(target=app.run).start()
     while True:
         _runEvents()
 
@@ -40,7 +23,7 @@ def run():
 def _runEvents():
     eventManager = EventManager()
     eventManager.initialize()
-    eventManager.run()
+    threading.Thread(target=eventManager.run).start()
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="f4c531ec-4bcc-4a97-9d80-cad6a9472cc9" name="raspy">
-        <fileTransfer rootFolder="/home/pi" accessType="SFTP" host="raspberrypi" port="333" sshConfigId="3df3111b-e300-421a-a582-51c046f9c252" sshConfig="pi@raspberrypi:333 key" keyPair="true">
+        <fileTransfer rootFolder="/home/pi/karna/KARNA" accessType="SFTP" host="192.168.1.99" port="333" sshConfigId="3df3111b-e300-421a-a582-51c046f9c252" sshConfig="pi@192.168.1.99:333 key" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

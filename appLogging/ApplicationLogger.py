@@ -16,7 +16,6 @@ class ApplicationLogger(object):
     # region Public Methods
 
     def addError(self, error):
-        print(error)
         self._errors.append(error)
 
     def addWarning(self, warning):

@@ -30,7 +30,7 @@ class LocationSchedule(AbstractSchedule):
 
     def gatherLocationAction(self):
         try:
-            os.system('python3 /home/pi/tile.py')
+            os.system('python /home/pi/tile.py')
             os.system('js-beautify tileJson.txt > tileJson.js')
             SchedulerManager().removeEvent('location')
         except Exception as ex:

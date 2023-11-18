@@ -39,4 +39,3 @@ class EventScheduler(object):
 
     def _initializeSchedules(self):
         self.schedules.append(AstralSchedule())
-        self.schedules.append(LocationSchedule())
